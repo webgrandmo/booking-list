@@ -64,6 +64,12 @@ UI.prototype.clearFields = function (book) {
   document.getElementById('isbn').value = '';
 }
 
+UI.prototype.deleteBook = function (target) {
+  if (target.className === 'delete') {
+    target.parentElement.parentElement.remove();
+  }
+}
+
 
 
 
@@ -82,3 +88,9 @@ document.getElementById('book-form').addEventListener('submit', function (e) {
   ui.validate(book);
   e.preventDefault()
 });
+
+document.getElementById('book-list').addEventListener('click', function (e) {
+  ui.deleteBook(e.target);
+  ui.showAlert('Booking removed successfuly', 'success');
+  e.preventDefault();
+})
